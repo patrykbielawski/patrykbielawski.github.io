@@ -1,0 +1,264 @@
+body {
+    font-family: Calibri, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+h2 {
+    text-align: center;
+    color: #555;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
+}
+a.button {
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    margin: 0;
+    padding: 10px 20px;
+    background-color: rgba(0, 57, 117, 0.8);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    min-width: 30%;
+    letter-spacing: 0.1rem;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+.download-button {
+    margin: 0 2rem;
+    padding: 0;
+    color: #333;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.download-button:hover {
+    color: rgb(0, 74, 153);
+    scale: 1.1;
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+    transition: color 0.2s ease scale 0.2s ease, box-shadow 0.2s ease;
+}
+.language-switcher {
+    margin: 0 2rem;
+    padding: 0;
+}
+.pl {
+    border: none;
+    background: url('https://flagicons.lipis.dev/flags/4x3/pl.svg') no-repeat center center / cover;
+    height: 16px;
+    width: 24px;
+    border: 1px solid #333;
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+.pl:hover {
+    scale: 1.1;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+    transition: scale 0.2s ease, box-shadow 0.2s ease;
+}
+.en {
+    border: none;
+    background: url('https://flagicons.lipis.dev/flags/4x3/gb.svg') no-repeat center center / cover;
+    height: 16px;
+    width: 24px;
+    border: 1px solid #333;
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+.en:hover {
+    scale: 1.1;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+    transition: scale 0.2s ease, box-shadow 0.2s ease;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+.intro {
+    padding: 20px;
+    display: inline;
+    padding: 10px 0;
+    letter-spacing: 0.1rem;
+}
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    min-width: 300px;
+    min-height: 300px;
+    position: relative;
+}
+.about-me {
+    background-image: url('https://images.unsplash.com/photo-1688216265936-35942c842bee?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+
+}
+.projects {
+    background-image: url('https://images.unsplash.com/photo-1622050756792-5b1180bbb873?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: -150px center;
+}
+.skills {
+    background-image: url('https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: 0 center;
+    background-repeat: no-repeat
+}
+.contact {
+    background-image: url('https://images.unsplash.com/photo-1565688842882-e0b2693d349a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: -70px center;
+    background-repeat: no-repeat
+}
+.card:hover {
+    transform: scale(1.01) translateY(-5px);
+    transition: transform 0.2s ease;
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.3);
+    opacity: 0.95;
+    
+}
+.button:hover {
+    background-color: rgb(0, 74, 153);
+    transition: background-color 0.2s ease;
+}
+.button:active {
+    background-color: rgb(0, 44, 90);
+    transition: background-color 0.1s ease;
+    transform: scale(0.98);
+}
+.panel {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+    padding: 1.5rem;
+    margin: auto 1rem;
+    border-left: 5px solid rgb(0, 74, 153);
+    background: #f0f0f0;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.1rem;
+}
+.panel:target {
+    display: block;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fa-ul {
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+}
+.fa-li i {
+    flex-shrink: 0; 
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+.contact-info {
+    text-decoration: none;
+    color: rgb(0, 44, 90);
+    line-height: 1.6;
+    margin-left: 0.5rem;
+}
+.contact-info:hover {
+    color: rgb(0, 74, 153);
+    transition: color 0.1s ease;
+}
+.content {
+    text-align: center;
+}
+.footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #999;
+}
+.copyright {
+    color: #555;
+    font-weight: bold;
+    font-size: 0.9rem;
+    line-height: 0.8;
+}
+.skill-bar {
+    margin-bottom: 1.5rem;
+}
+.skill-bar label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+.progress-bar {
+    background: #f0f0f0;
+    border: 1px solid #333;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 1rem;
+}
+.progress {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to right, rgb(0, 57, 117), rgb(0, 74, 153));
+    animation: grow 1s ease-in-out forwards;
+    animation-delay: var(--delay, 0s);
+}
+@keyframes grow {
+    from {
+        width: 0;
+    }
+    to {
+        width: var(--percentage);
+    }
+}

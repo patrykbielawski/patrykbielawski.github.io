@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Curriculum vitae</title>
+   <font face="Calibri">
+   <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8z4+2e5c7e5f5e5c7e5f5e5c7e5f5e5c7e5" crossorigin="anonymous">
+   <script src="https://kit.fontawesome.com/4dd697c854.js" crossorigin="anonymous"></script>
+ </head>
+ <body>
+    <div class="container">
+      <div class="header">
+        <a href="/pdf/CV_Patryk_Bielawski.pdf" class="download-button" download><i class="fa-solid fa-file-pdf"></i></a>
+        <div class="language-switcher">
+          <button class="pl" onclick="setLanguage('pl')">Polski</button>
+          <button class="en" onclick="setLanguage('en')">English</button>
+        </div>
+      </div>
+      <div class="intro">  
+        <h1 class="center"></h1>
+        <p class="center"></p>
+      </div>
+      <div class="card-container"> 
+          <div class="card about-me">
+            <a class="button" href="#about"><strong></strong></a>
+          </div>
+        <div class="card projects">
+          <a class="button" href="#projects"><strong></strong></a>
+        </div> 
+        <div class="card skills">
+          <a class="button" href="#skills"><strong></strong></a>
+        </div>
+        <div class="card contact">
+          <a class="button" href="#contact"><strong></strong></a>
+        </div>
+      </div>
+      
+      <div class="content">
+        <section id="about" class="panel">
+            <h2></h2>
+            <p></p>
+        </section>
+        <section id="projects" class="panel">
+            <h2></h2>
+            <p></p>
+        </section>
+        <section id="skills" class="panel">
+            <h2></h2>
+            <p></p>
+            <div class="skill-bar">
+                <label>HTML</label>
+                <div class="progress-bar"><div class="progress" style="--percentage:90%; --delay:0.2s"></div></div>
+            </div>
+            <div class="skill-bar">
+                <label>CSS</label>
+                <div class="progress-bar"><div class="progress" style="--percentage:80%; --delay:0.4s"></div></div>
+            </div>
+            <div class="skill-bar">
+                <label>Git</label>
+                <div class="progress-bar"><div class="progress" style="--percentage:45%; --delay:0.6s"></div></div>
+            </div>
+        </section>
+        <section id="contact" class="panel">
+            <h2></h2>
+            <p></p>
+            <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fa-solid fa-envelope"></i></span><a class="contact-info" href="mailto:patryk@bielaw.ski"><strong>patryk@bielaw.ski</strong></a></li>
+                <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span><a class="contact-info" href="tel:+48501705119"><strong>+48 501 705 119</strong></a></li>
+            </ul> 
+        </section>
+      </div>  
+    </div>
+    <div class="footer">
+        <p class="copyright"></p>
+        <p class="copyright"></p>
+    </div>
+    <script src="language.js"></script>
+ </body>
+</html>
