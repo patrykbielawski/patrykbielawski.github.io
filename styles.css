@@ -1,13 +1,3 @@
-@media only screen and (max-width: 600px) {
-    .card {
-        width: 150px;
-        height: 150px;
-    }
-    .projects {
-        background-position: -75px center;
-    }
-    
-}
 body {
     font-family: Calibri, sans-serif;
     background-color: #f0f0f0;
@@ -145,6 +135,7 @@ button {
     background-image: url('https://images.unsplash.com/photo-1688216265936-35942c842bee?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 
 }
 .projects {
