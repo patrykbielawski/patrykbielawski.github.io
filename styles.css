@@ -1,3 +1,13 @@
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 150px;
+        height: 150px;
+    }
+    .projects {
+        background-position: -5rem center;
+    }
+    
+}
 body {
     font-family: Calibri, sans-serif;
     background-color: #f0f0f0;
@@ -120,7 +130,6 @@ button {
 .card {
     display: flex;
     flex-direction: column;
-    flex-shrink: 1;
     justify-content: space-between;
     align-items: center;
     border-radius: 1rem;
@@ -130,8 +139,6 @@ button {
     text-align: center;
     width: 300px;
     height: 300px;
-    min-width: 150px;
-    min-height: 150px;
     position: relative;
 }
 .about-me {
