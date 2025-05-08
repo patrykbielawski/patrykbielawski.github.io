@@ -1,9 +1,9 @@
 function getWeather() {
     const apiKey = '32a42eec2555032a96841277eda3751c';
-    const city = document.getElementById("city").value;
+    const city = document.getElementById('city').value;
 
     if (!city) {
-        alert("Please enter a city name.");
+        alert('Please enter a city name.');
         return;
     }
 
@@ -17,7 +17,7 @@ function getWeather() {
         })    
         .catch(error => {
             console.error('Error fetching current weather:', error);
-            alert("Error fetching current weather. Please try again.");
+            alert('Error fetching current weather. Please try again.');
         });
      
     fetch(forecastUrl)
@@ -27,16 +27,16 @@ function getWeather() {
         })    
         .catch(error => {
             console.error('Error fetching hourly forecast:', error);
-            alert("Error fetching hourly forecast. Please try again.");
+            alert('Error fetching hourly forecast. Please try again.');
         });
 }
 
 function displayWeather(data) {
 
-    const tempInfo = document.getElementById("temp");
-    const weatherInfoDiv = document.getElementById("weather-info");
-    const weatherIcon = document.getElementById("weather-icon");
-    const hourlyForecastDiv = document.getElementById("hourly-forecast");
+    const tempInfo = document.getElementById('temp');
+    const weatherInfoDiv = document.getElementById('weather-info');
+    const weatherIcon = document.getElementById('weather-icon');
+    const hourlyForecastDiv = document.getElementById('hourly-forecast');
 
     weatherInfoDiv.innerHTML = '';
     hourlyForecastDiv.innerHTML = '';
@@ -47,8 +47,8 @@ function displayWeather(data) {
         weatherInfoDiv.innerHTML = '<p>${data.message}</p>';
         } else {
         
-        const cityName = data.name;
-        const temperature = Math.round(data.main.temp);
+        const city = data.name;
+        const temp = Math.round(data.main.temp);
         const description = data.weather[0].description;
         const iconCode = data.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
