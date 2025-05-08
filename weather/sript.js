@@ -6,10 +6,11 @@ function getWeather() {
         alert("Please enter a city name.");
         return;
     }
+
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    const forecastUrl = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     
-    fetch(currentWeatherUrl) {
+    fetch(currentWeatherUrl) 
         .then(response => response.json())
         .then(data => {
             displayWeather(data);
@@ -28,8 +29,8 @@ function getWeather() {
             console.error('Error fetching hourly forecast:', error);
             alert("Error fetching hourly forecast. Please try again.");
         });
-    }    
 }
+
 function displayWeather(data) {
 
     const tempInfo = document.getElementById("temp");
