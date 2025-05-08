@@ -1,0 +1,97 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    color: #fff;
+}
+body {
+    background: #1c799e;
+    background: -webkit-linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
+    background: linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1C799E", endColorstr="#48B072", GradientType=0);
+}
+.alumni-sans-pinstripe-regular {
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .alumni-sans-pinstripe-regular-italic {
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+.weather-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+    justify-items: center;
+    align-self: center;
+    justify-self: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 100%;
+    width: 60%;
+    letter-spacing: 0.2rem;
+    border-radius: 1rem;
+}
+h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+#weather-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    justify-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+input {
+    width: 80%;
+    font-family: Alumni Sans Pinstripe, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+}
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: rgb(173, 194, 201);
+    border: 1px solid rgb(193, 214, 221);
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+}
+button i {
+    font-size: 0.5rem;
+    color: #fff;
+}
+button:hover {
+    background-color: rgb(153, 174, 181);
+    transition: background-color 0.3s ease scale 0.3s ease;
+    transform: scale(1.05);
+}
+button:active {
+    background-color: rgb(133, 154, 161);
+    transform: scale(0.95);
+}
+#weather-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
