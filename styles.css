@@ -127,7 +127,7 @@ button {
     margin: 20px auto;
     padding: 20px;
     text-align: center;
-    min-width: 300px;
+    width: 300px;
     min-height: 300px;
     position: relative;
 }
