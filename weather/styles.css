@@ -137,11 +137,7 @@ button:active {
     padding: 0;
     border-radius: 1rem;
 }
-#hourly-forecast-container h2 {
-    font-size: 2rem;
-    text-align: center;
-    margin-top: 30px;
-}
+
 .forecast-item {
     display: flex;
     flex-direction: column;
@@ -174,4 +170,5 @@ button:active {
     margin: 0;
     font-size: 1rem;
     text-align: center;
+    font-weight: bold;
 }
