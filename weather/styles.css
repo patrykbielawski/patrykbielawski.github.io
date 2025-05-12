@@ -1,17 +1,10 @@
 html, body {
     height: 100%;
-    width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Alumni Sans Pinstripe', sans-serif;
     color: #fff;
-}
-body {
-    background: #1c799e;
-    background: -webkit-linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
-    background: -moz-linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
-    background: linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1C799E", endColorstr="#48B072", GradientType=0);
+    background-image: linear-gradient(180deg, rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
 }
 .alumni-sans-pinstripe-regular {
     font-family: "Alumni Sans Pinstripe", sans-serif;
@@ -34,8 +27,8 @@ body {
     align-self: center;
     justify-self: center;
     background-color: rgba(255, 255, 255, 0.1);
-    height: 100%;
-    width: 60%;
+    height: 90%;
+    width: 50%;
     letter-spacing: 0.2rem;
     border-radius: 1rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);

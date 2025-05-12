@@ -6,9 +6,8 @@ function getWeather() {
             return;
         }
     console.log(`Fetching weather data for city: ${city}`);    
-    const apiKey = '01bbc75d32ad5eaa623474c1d849c8ff';
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    fetch(`https://weather.burek.it/data/2.5/weather?q=${city}&units=metric`)
         .then(response => {
             console.log('API response:', response);
             if (!response.ok) {
