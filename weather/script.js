@@ -33,7 +33,7 @@ function getWeather(event) {
             let compassSector = ['North', 'North-East', 'East', 'South-East', 'South', 'South-West', 'West', 'North-West'];
             details.windDirection = compassSector[details.windDirection];
             document.getElementById('city').value = '';
-            document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${weather.icon}@4x.png`;
+            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${weather.icon}@4x.png`;
             document.getElementById('weather-icon').style.display = 'block';
             document.getElementById('weather-info').innerHTML = `
                 <h2>${weather.city}</h2>
@@ -72,7 +72,7 @@ function getWeather(event) {
                 forecastItem.className = 'forecast-item';
                 forecastItem.innerHTML = `
                     <h3>${item.date}</h3>
-                    <img src="http://openweathermap.org/img/wn/${item.icon}.png" alt="${item.description}">
+                    <img src="https://openweathermap.org/img/wn/${item.icon}.png" alt="${item.description}">
                     <p>${item.temperature}°C</p>
                     `;
                 forecastContainer.appendChild(forecastItem);

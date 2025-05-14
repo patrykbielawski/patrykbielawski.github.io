@@ -1,6 +1,5 @@
 @media only screen and (max-width: 600px) {
     .weather-container {
-        width: 90%;
         padding: 10px;
     }
     #weather-form {
