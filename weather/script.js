@@ -24,6 +24,14 @@ function getWeather(event) {
                 description: data.weather[0].description,
                 icon: data.weather[0].icon
             };
+            const details = {
+                humidity: Math.round(data.main.humidity),
+                windSpeed: Math.round(data.wind.speed),
+                windDirection: Math.round(data.wind.deg /45) % 8,
+                pressure: Math.round(data.main.pressure)
+            };
+            let compassSector = ['North', 'North-East', 'East', 'South-East', 'South', 'South-West', 'West', 'North-West'];
+            details.windDirection = compassSector[details.windDirection];
             document.getElementById('city').value = '';
             document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${weather.icon}@4x.png`;
             document.getElementById('weather-icon').style.display = 'block';
@@ -31,7 +39,13 @@ function getWeather(event) {
                 <h2>${weather.city}</h2>
                 <p>${weather.temperature}°C</p>
                 <p>${weather.description}</p>
-                `;
+            <div class="details">
+                <i class="fa-solid fa-droplet"><span>${details.humidity}</span><span>%</span></i>  
+                <i class="fa-solid fa-wind"><span>${details.windSpeed}</span><span>m/s</span></i>
+                <i class="fa-solid fa-compass"><span>${details.windDirection}</span></i>
+                <i class="fa-solid fa-circle-down"><span>${details.pressure}</span><span>hPa</span></i>
+            </div>
+            `;
         })
         .catch(error => {
             console.error('Error fetching weather data:', error);

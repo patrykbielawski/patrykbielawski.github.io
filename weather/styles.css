@@ -30,6 +30,7 @@ html, body {
     justify-self: center;
     align-items: center;
     justify-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.1);
     height: auto;
     width: 50%;
@@ -126,6 +127,57 @@ button:active {
     text-align: center;
     margin: 0 auto;
 }
+.details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0;
+    border-radius: 1rem;
+    overflow-x: auto;
+
+}
+.details span{
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 0 5px;
+    line-height: 1.2rem;
+}
+.details i {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    width: 70px;
+    height: 120px;
+    flex-wrap: wrap;
+    min-width: 80px;
+}
+.fa-droplet {
+        color: #14d0ff;
+}
+.fa-droplet::before {
+    margin-bottom: 20px;
+}
+.fa-wind::before {
+    margin-bottom: 20px;
+}
+.fa-compass::before {
+    margin-bottom: 20px;
+}
+.fa-circle-down::before {
+    margin-bottom: 20px;
+}
 #hourly-forecast-container {
     display: flex;
     flex-direction: column;
@@ -137,7 +189,6 @@ button:active {
     padding: 0;
     border-radius: 1rem;
 }
-
 .forecast-item {
     display: flex;
     flex-direction: column;
@@ -154,6 +205,7 @@ button:active {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     width: 100px;
+    color: #fff;
 }
 .forecast-item h3 {
     font-size: 1.2rem;
@@ -168,7 +220,6 @@ button:active {
 }
 .forecast-item p {
     margin: 0;
-    font-size: 1rem;
     text-align: center;
     font-weight: bold;
 }
