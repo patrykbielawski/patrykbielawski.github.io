@@ -77,5 +77,25 @@ function getWeather(event) {
                     `;
                 forecastContainer.appendChild(forecastItem);
             });
+            const daily = data.list.filter(item => item.dt_txt.includes('12:00:00')).slice(0, 5).map(item => {
+                return {
+                    date: new Date(item.dt * 1000).toLocaleDateString([], { day: '2-digit', month: '2-digit'}),
+                    temperature: Math.round(item.main.temp),
+                    description: item.weather[0].description,
+                    icon: item.weather[0].icon
+                };
+            });
+            const dailyContainer = document.getElementById('daily-forecast');
+            dailyContainer.innerHTML = ''; // Clear previous forecast
+            daily.forEach(item => {
+                const dailyItem = document.createElement('div');
+                dailyItem.className = 'daily-item';
+                dailyItem.innerHTML = `
+                    <h3>${item.date}</h3>
+                    <img src="https://openweathermap.org/img/wn/${item.icon}.png" alt="${item.description}">
+                    <p>${item.temperature}°C</p>
+                    `;
+                dailyContainer.appendChild(dailyItem);
+            });
         });
 }
