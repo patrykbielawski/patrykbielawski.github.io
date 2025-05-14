@@ -50,8 +50,8 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.1);
     height: auto;
-    width: 50%;
-    max-width: 800px;
+    width: 60%;
+    max-width: 1000px;
     letter-spacing: 0.2rem;
     border-radius: 1rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -85,8 +85,8 @@ button {
     align-items: center;
     justify-content: center;
     color: #fff;
-    background-color: rgb(173, 194, 201);
-    border: 1px solid rgb(193, 214, 221);
+    background-image: linear-gradient(130deg,rgba(28, 121, 158, 1) 0%, rgba(72, 176, 114, 1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 5px;
     cursor: pointer;
     border-radius: 50%;
@@ -278,6 +278,17 @@ button:active {
     backdrop-filter: blur(10px);
     width: 100px;
     color: #fff;
+}
+.daily-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease scale 0.3s ease translateY 0.3s ease;
+    transform: scale(1.01) translateY(-2px);
+    cursor: pointer;
+}
+.daily-item:active {
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color 0.3s ease scale 0.3s ease;
+    transform: scale(0.99);
 }
 .daily-item h3 {
     font-size: 1.2rem;

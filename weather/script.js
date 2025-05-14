@@ -82,7 +82,8 @@ function getWeather(event) {
                     date: new Date(item.dt * 1000).toLocaleDateString([], { day: '2-digit', month: '2-digit'}),
                     temperature: Math.round(item.main.temp),
                     description: item.weather[0].description,
-                    icon: item.weather[0].icon
+                    icon: item.weather[0].icon,
+                    fullDate: item.dt_txt.split(' ')[0]
                 };
             });
             const dailyContainer = document.getElementById('daily-forecast');
@@ -95,6 +96,54 @@ function getWeather(event) {
                     <img src="https://openweathermap.org/img/wn/${item.icon}.png" alt="${item.description}">
                     <p>${item.temperature}°C</p>
                     `;
+                    dailyItem.addEventListener('click', () => {
+                // Update weather-icon
+                document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${item.icon}@4x.png`;
+                document.getElementById('weather-icon').style.display = 'block';
+                // Extract weather details
+                const selectedDetails = data.list.find(hourlyItem => hourlyItem.dt_txt.includes(item.fullDate));
+                const humidity = Math.round(selectedDetails.main.humidity);
+                const windSpeed = Math.round(selectedDetails.wind.speed);
+                const windDirection = Math.round(selectedDetails.wind.deg / 45) % 8;
+                const pressure = Math.round(selectedDetails.main.pressure);
+                const compassSector = ['North', 'North-East', 'East', 'South-East', 'South', 'South-West', 'West', 'North-West'];
+                const windDirectionText = compassSector[windDirection];
+                // Update weather-info
+                document.getElementById('weather-info').innerHTML = `
+                    <h2>${city}</h2>
+                    <p>${item.temperature}°C</p>
+                    <p>${item.description}</p>
+                    <div class="details">
+                        <i class="fa-solid fa-droplet"><span>${humidity}</span><span>%</span></i>  
+                        <i class="fa-solid fa-wind"><span>${windSpeed}</span><span>m/s</span></i>
+                        <i class="fa-solid fa-compass"><span>${windDirectionText}</span></i>
+                        <i class="fa-solid fa-circle-down"><span>${pressure}</span><span>hPa</span></i>
+                    </div>
+                `;
+
+                // Update hourly-forecast
+                const hourlyForecast = data.list.filter(hourlyItem => hourlyItem.dt_txt.includes(item.fullDate)).map(hourlyItem => {
+                    return {
+                        time: new Date(hourlyItem.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                        temperature: Math.round(hourlyItem.main.temp),
+                        description: hourlyItem.weather[0].description,
+                        icon: hourlyItem.weather[0].icon
+                    };
+                });
+
+                const forecastContainer = document.getElementById('hourly-forecast');
+                forecastContainer.innerHTML = ''; // Clear previous forecast
+                hourlyForecast.forEach(hourlyItem => {
+                    const forecastItem = document.createElement('div');
+                    forecastItem.className = 'forecast-item';
+                    forecastItem.innerHTML = `
+                        <h3>${hourlyItem.time}</h3>
+                        <img src="https://openweathermap.org/img/wn/${hourlyItem.icon}.png" alt="${hourlyItem.description}">
+                        <p>${hourlyItem.temperature}°C</p>
+                    `;
+                    forecastContainer.appendChild(forecastItem);
+                });
+            });
                 dailyContainer.appendChild(dailyItem);
             });
         });
