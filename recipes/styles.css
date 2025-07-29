@@ -1,0 +1,140 @@
+
+.material-symbols-outlined {
+  font-size: 1.5rem;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+}
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    background: rgb(240, 233, 210);
+}    
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+#navbar {
+    background-color: rgb(242, 247, 99);
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    font-family: "Amatic SC", sans-serif;;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    height: 6rem;
+    width: 100%;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+#navbar ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.home-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: black;
+    text-decoration: none;
+    padding: 0 1rem;
+}
+.logo {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 10rem;
+    height: 3rem;
+    padding: auto;
+    font-size: 1.5rem;
+}
+.logo svg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.search-form {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+#searchInput {
+    height: 1.4rem;
+    border: 1px solid rgba(252, 252, 240, 0.5);
+    border-radius: 0.5rem;
+    margin-right: 2rem;
+    font-size: 1.1rem;
+    width: 9.5rem;
+    flex-grow: 1.2;
+    background: rgb(240, 233, 210)
+}
+button {
+    background: #F2F763;
+    background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.1) 100%);
+    border: 1px solid rgba(252, 252, 240, 0.5);
+    border-radius: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: rgb(242, 247, 99);
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+footer {
+    background-color: rgb(242, 247, 99);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    font-family: "Open Sans", sans-serif;;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 4rem;
+    width: 100%;
+    letter-spacing: 0.1rem;
+    box-shadow: 0 -0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+footer a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+footer p {
+    padding: 1rem;
+}
+@media (min-width: 790px) {
+
+    .logo svg {
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1.2rem;
+    }
+    #searchInput {
+        width: 19rem;
+    }
+    .container {
+        max-width: 100%;
+        padding: 0 2rem;
+    }
+}
