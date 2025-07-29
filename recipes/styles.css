@@ -12,7 +12,12 @@ body {
     font-size: 16px;
     text-align: center;
     background: rgb(240, 233, 210);
+    letter-spacing: 0.1rem;
+    line-height: 1.5;
 }    
+
+/* navbar */
+
 .container {
     width: 100%;
     margin: 0 auto;
@@ -79,6 +84,7 @@ h1 {
     color: black;
     font-weight: bold;
     font-family: "Amatic SC", sans-serif;
+    line-height: 1;
 }
 .search-form {
     position: relative;
@@ -89,6 +95,7 @@ h1 {
     width: 50%;
     justify-content: flex-end;
     padding: 0 1rem;
+    right: 1rem;
 }
 #searchInput {
     height: 1.4rem;
@@ -102,9 +109,12 @@ h1 {
     padding: 0.5rem;
     background: rgb(240, 233, 210)
 }
-button {
+#homeButton, #searchButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #F2F763;
-    background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.1) 100%);
+    background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.2) 100%);
     border: 1px solid rgba(252, 252, 240, 0.5);
     border-radius: 2rem;
     height: 2.5rem;
@@ -112,7 +122,167 @@ button {
     background-color: rgb(242, 247, 99);
     flex-shrink: 1;
     flex-grow: 1;
+    cursor: pointer;
 }
+#searchButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0.5rem;
+}
+
+/* main content */
+#recipeResults {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6rem;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+.recipe {
+    background-color: rgb(248, 243, 220);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-wrap: wrap;
+}
+.recipe img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+.recipe h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    color: rgb(30, 48, 80);
+}
+.recipe p {
+    background: rgba(252, 252, 240, 0.8);
+    color: rgb(30, 48, 80);
+    margin: 1.5rem 1rem;
+    padding: 1rem 0.5rem;
+    height: auto;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+.recipe a, button {
+    text-decoration: none;
+    color: rgb(30, 48, 80);
+    font-weight: bold;
+    background-color: rgb(242, 247, 99);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
+    transform: scale(1.05);
+}
+
+.view-recipe-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(242, 247, 99);
+    color: rgb(30, 48, 80);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out;
+    transform: scale(1.05);
+    width: 7rem;
+    text-align: center;
+}
+
+.meal-detail-actions {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    margin-top: 1rem;
+    height: 4rem;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    width: 100%;
+    height: 0;
+    margin: 5rem 5rem; /* 16:9 aspect ratio */
+    position: relative;
+    object-fit: contain;
+
+}
+
+.meal-detail-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(242, 247, 99);
+    color: rgba(30, 48, 80, 1);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease-in-out;
+    transform: scale(1.05);
+    width: 25%;
+    text-align: center;
+}
+
+.meal-detail-card {
+    background-color: rgb(248, 243, 220);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1.5rem auto;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0.8;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+}
+
+.meal-detail-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.meal-detail-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* footer */
+
 footer {
     background-color: rgb(242, 247, 99);
     position: fixed;
@@ -137,7 +307,48 @@ footer a {
 footer p {
     padding: 1rem;
 }
-@media only screen and (min-width: 700px) {
+
+/* media queries and animations*/
+@media only screen and (max-width: 480px) {
+    .logo svg {
+        display: none;
+    }
+    .recipe {
+        min-width: 100%;
+        height: auto;
+    }
+}
+@media only screen and (max-width: 764px) {
+    .recipe {
+        min-width: 100%;
+        margin: 1rem auto;
+    }
+    #searchInput {
+        width: 50%;
+        margin-bottom: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .logo {
+        width: 30%;
+    }
+    .logo svg {
+        width: 50%;
+    }
+    .video-container {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .recipe {
+        width: 30%;
+    }
+
+    .meal-detail-card {
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 764px) {
     .container {
         width: 80%;
     }
@@ -153,4 +364,44 @@ footer p {
         position: relative;
         align-items: center;
     }
+
+    .meal-detail-card {
+        width: 80%;
+    }
+}
+.recipe:hover {
+    transform: scale(1.02);
+    border: 1px solid rgba(252, 252, 240, 0.5);
+}
+.recipe a:hover {
+    background-color: rgb(30, 48, 80);
+    color: rgb(242, 247, 99);
+    transform: scale(1.02);
+    transition: background-color 0.2s ease-in-out;
+}
+.recipe button:hover {
+    background-color: rgb(30, 48, 80);
+    color: rgb(242, 247, 99);
+    transform: scale(1.02);
+    transition: background-color 0.2s ease-in-out;
+}
+#searchButton:hover {
+    background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.3) 100%);
+    border: 1px solid rgba(252, 252, 240, 0.7);
+    transform: scale(1.02);
+    transition: background-color 1s ease-in-out;
+}
+
+#homeButton:hover {
+    background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.3) 100%);
+    border: 1px solid rgba(252, 252, 240, 0.7);
+    transform: scale(1.02);
+    transition: background-color 1s ease-in-out;
+}
+
+.meal-detail-actions button:hover {
+    background-color: rgb(30, 48, 80);
+    color: rgb(242, 247, 99);
+    transform: scale(1.02);
+    transition: background-color 0.2s ease-in-out;
 }
