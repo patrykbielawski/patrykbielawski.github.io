@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const recipeResultsDiv = document.getElementById('recipeResults');
 
+    recipeResultsDiv.innerHTML = '<p>Welcome to the Recipe App! Please enter an ingredient to find recipes!</p>';
+
     searchButton.addEventListener('click', () => {
         event.preventDefault();
         const searchTerm = searchInput.value.trim();

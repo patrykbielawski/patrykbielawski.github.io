@@ -1,6 +1,6 @@
 
 .material-symbols-outlined {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -12,8 +12,9 @@ body {
     font-size: 16px;
     text-align: center;
     background: rgb(240, 233, 210);
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.1em;
     line-height: 1.5;
+    display: flex;
 }    
 
 /* navbar */
@@ -40,9 +41,9 @@ body {
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: 6rem;
+    height: 6em;
     width: 100%;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
 }
 #navbar ul {
     display: flex;
@@ -54,32 +55,38 @@ body {
     width: 100%;
     flex-shrink: 1;
 }
-.home-button {
+.drop-down {
     position: relative;
     display: flex;
     align-items: center;
-    font-size: 2rem;
+    font-size: 2em;
     color: black;
     text-decoration: none;
-    padding: 0 1rem;
+    padding: 0 1em;
 }
 .logo {
     position: relative;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    overflow: wrap;
     justify-content: flex-start;
     align-items: center;
-    max-width: 20rem;;
+    max-width: 20em;;
     height: 100%;
     padding: auto;
-    font-size: 1.5rem;
+    font-size: 1.5em;
 }
 .logo svg {
-    max-width: 5rem;
-    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 1;
+    max-width: 2em;
+    height: 2em;
+    margin-right: 0.5em;
 }
 h1 {
-    font-size: 2.5rem;
+    font-size: 2em;
     margin: 0;
     color: black;
     font-weight: bold;
@@ -89,47 +96,47 @@ h1 {
 .search-form {
     position: relative;
     display: flex;
-    flex-wrap: nowrap;
-    flex-grow: 1;
-    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
     width: 50%;
-    justify-content: flex-end;
-    padding: 0 1rem;
-    right: 1rem;
+    justify-content: center;
+    padding: 0 1em;
+    right: 0.3em;
 }
 #searchInput {
-    height: 1.4rem;
+    height: 0.3em;
     border: 1px solid rgba(252, 252, 240, 0.5);
-    border-radius: 0.5rem;
-    margin-right: 2rem;
-    font-size: 1.1rem;
+    border-radius: 0.5em;
+    margin-right: 2em;
+    font-size: 1.1em;
     flex-grow: 1;
     flex-shrink: 1;
-    width: 9.4rem;
-    padding: 0.5rem;
+    width: 9.4em;
+    padding: 0.5em;
     background: rgb(240, 233, 210)
 }
-#homeButton, #searchButton {
+#dropdown, #searchButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #F2F763;
-    background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.2) 100%);
-    border: 1px solid rgba(252, 252, 240, 0.5);
-    border-radius: 2rem;
-    height: 2.5rem;
-    width: 2.5rem;
+    background: rgb(242, 247, 99);
+    color: rgb(30, 48, 80);
+    border: 1px solid rgba(240, 233, 210, 1);
+    border-radius: 2em;
+    height: 2.5em;
+    width: 2.5em;
     background-color: rgb(242, 247, 99);
     flex-shrink: 1;
     flex-grow: 1;
     cursor: pointer;
 }
 #searchButton {
-    position: absolute;
+    position: relative;
     right: 0;
     top: 0;
     bottom: 0;
-    padding: 0.5rem;
+    padding: 0.5em;
 }
 
 /* main content */
@@ -138,19 +145,19 @@ h1 {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    padding: 6rem;
+    padding: 0 auto;
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
 }
 .recipe {
     background-color: rgb(248, 243, 220);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 1.5rem auto;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 1.5em auto;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
-    width: 25%;
+    width: 80%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -161,34 +168,34 @@ h1 {
 .recipe img {
     max-width: 50%;
     height: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
     margin: 0 auto;
 }
 .recipe h3 {
-    font-size: 1.2rem;
+    font-size: 1.2em;
     font-weight: 600;
-    margin: 1rem 0;
+    margin: 1em 0;
     color: rgb(30, 48, 80);
 }
 .recipe p {
     background: rgba(252, 252, 240, 0.8);
     color: rgb(30, 48, 80);
-    margin: 1.5rem 1rem;
-    padding: 1rem 0.5rem;
+    margin: 1.5em 1em;
+    padding: 1em 0.5em;
     height: auto;
-    border-radius: 0.2rem;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.2em;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    font-size: 0.9rem;
+    font-size: 0.9em;
 }
 .recipe a, button {
     text-decoration: none;
     color: rgb(30, 48, 80);
     font-weight: bold;
     background-color: rgb(242, 247, 99);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
     transition: background-color 0.2s ease-in-out;
     transform: scale(1.05);
 }
@@ -200,14 +207,14 @@ h1 {
     background-color: rgb(242, 247, 99);
     color: rgb(30, 48, 80);
     border: none;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 1em;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 1em;
     transition: background-color 0.2s ease-in-out;
     transform: scale(1.05);
-    width: 7rem;
+    width: 7em;
     text-align: center;
 }
 
@@ -217,20 +224,8 @@ h1 {
     flex-direction: row;
     justify-content: space-around;
     align-items: space-around;
-    margin-top: 1rem;
-    height: 4rem;
-}
-
-.video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;;
-    width: 100%;
-    height: 0;
-    margin: 5rem 5rem; /* 16:9 aspect ratio */
-    position: relative;
-    object-fit: contain;
-
+    margin-top: 1em;
+    height: 4em;
 }
 
 .meal-detail-actions button {
@@ -240,11 +235,11 @@ h1 {
     background-color: rgb(242, 247, 99);
     color: rgba(30, 48, 80, 1);
     border: none;
-    border-radius: 0.5rem;
-    padding: 1rem 1rem;
-    font-size: 1.2rem;
+    border-radius: 0.5em;
+    padding: 1em 1em;
+    font-size: 1.2em;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 1em;
     transition: background-color 0.2s ease-in-out;
     transform: scale(1.05);
     width: 25%;
@@ -253,33 +248,49 @@ h1 {
 
 .meal-detail-card {
     background-color: rgb(248, 243, 220);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 1.5rem auto;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
-    width: 50%;
-    height: auto;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 10em auto;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
+    width: 80%;
+    min-width: 18em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0.8;
+    flex-shrink: 0;
     box-sizing: border-box;
-    font-size: 0.8rem;
+    font-size: 1em;
+    line-height: 2;
+    letter-spacing: 0.05em;
+    text-align: center;
 }
 
 .meal-detail-card img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
     margin: 0 auto;
 }
 
 .meal-detail-card ul {
-    list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
 }
 /* footer */
 
@@ -293,11 +304,11 @@ footer {
     font-family: "Open Sans", sans-serif;;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    height: 4rem;
+    justify-content: space-around;
+    height: 4em;
     width: 100%;
-    letter-spacing: 0.1rem;
-    box-shadow: 0 -0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.1em;
+    box-shadow: 0 -0.2em 0.5em rgba(0, 0, 0, 0.1);
 }
 footer a {
     color: black;
@@ -305,68 +316,46 @@ footer a {
     font-weight: bold;
 }
 footer p {
-    padding: 1rem;
+    padding: 1em;
 }
 
 /* media queries and animations*/
 @media only screen and (max-width: 480px) {
-    .logo svg {
-        display: none;
-    }
+
     .recipe {
-        min-width: 100%;
+        min-width: 60%;
         height: auto;
+    }
+    #searchInput {
+    width: 50%;
+    margin-bottom: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.9em;
     }
 }
 @media only screen and (max-width: 764px) {
+    .logo{
+    font-size: 1em;
+    flex-direction: column;
+    align-items: center;
+    }
     .recipe {
-        min-width: 100%;
-        margin: 1rem auto;
-    }
-    #searchInput {
-        width: 50%;
-        margin-bottom: 1rem;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .logo {
-        width: 30%;
-    }
-    .logo svg {
-        width: 50%;
-    }
-    .video-container {
-        display: none;
-    }
-}
-@media only screen and (max-width: 1024px) {
-    .recipe {
-        width: 30%;
-    }
-
-    .meal-detail-card {
-        width: 80%;
+        margin: 1em auto;
     }
 }
 @media only screen and (min-width: 764px) {
-    .container {
-        width: 80%;
-    }
-    .logo svg {
-        width: 4.4rem;
-    }
     #searchInput {
-        margin-bottom: 1rem;
-        width: 17.4rem;
+        margin-bottom: 1em;
+        width: 17.4em;
     }
     #searchForm {
         display: flex;
         position: relative;
         align-items: center;
     }
-
-    .meal-detail-card {
-        width: 80%;
+    .video-container {
+        max-width: 75%;
     }
 }
 .recipe:hover {
@@ -392,7 +381,7 @@ footer p {
     transition: background-color 1s ease-in-out;
 }
 
-#homeButton:hover {
+#dropdown:hover {
     background: linear-gradient(180deg,rgba(242, 247, 99, 1) 0%, rgba(30, 48, 80, 0.3) 100%);
     border: 1px solid rgba(252, 252, 240, 0.7);
     transform: scale(1.02);

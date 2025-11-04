@@ -1,0 +1,157 @@
+/* General Styles */
+
+body {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    background-color: #fefefe;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.material-icons {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+button {
+    background-color: #e89d66;
+    border: 1px solid #4c6c8a;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100px;
+}
+
+button:hover {
+    background-color: #4c6c8a;
+    outline: #d87c3c solid 1px;
+    color: #d87c3c;
+    transform: scale(1.05);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.1s;
+}
+
+.router-view-wrapper {
+    flex: none;
+    transition: padding 0.15s ease-out;
+}
+
+/* Keyframes */
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            transform: translateY(20%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+/* Media Queries*/
+
+/* @media only screen and (min-width: 768px) {
+    .recommended-section {
+        animation-range: entry 0% cover 20%;
+    }
+} */
+
+@media only screen and (min-width: 1440px) {
+    body {
+        font-size: 1.2em;
+    }
+
+    .home {
+        left: 20%;
+    }
+
+    .quick-links {
+        left: 25%;
+        width: 30%;
+    }
+}
+
+/* Animations */
+
+
+.scroll-animate-hidden {
+    opacity: 0 !important;
+}
+
+.info-section {
+    animation: fadeInUp 1s ease-in-out 1800ms;
+}
+
+.recommended-section {
+    animation: slideInLeft ease-in;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.recipe-header {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.ingredients-list {
+    animation: fadeInUp 1.7s ease-in-out;
+}
+
+.instructions-section {
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.meal-card {
+    animation: fadeInUp linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.auth-card {
+    animation: fadeInUp 1s ease-in-out;
+}
