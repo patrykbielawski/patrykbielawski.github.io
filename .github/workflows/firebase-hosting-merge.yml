@@ -17,7 +17,7 @@ jobs:
           node-version: '20'
       - name: Install dependencies and build
         run: |
-          cd recipes/cooksy
+          cd recipes/Cooksy
           npm ci
           npm run build
         env:
@@ -34,4 +34,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COOKSY_24A88 }}
           channelId: live
           projectId: cooksy-24a88
-          entryPoint: recipes/cooksy
+          entryPoint: recipes/Cooksy
