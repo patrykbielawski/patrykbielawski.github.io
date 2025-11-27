@@ -46,8 +46,8 @@ import { useFav } from '../composables/useFav';
 interface Meal {
     idMeal: string;
     strMeal: string;
-    strCategory: string;
-    strArea: string;
+    strCategory: string | null;
+    strArea: string | null;
     strMealThumb: string;
 }
 

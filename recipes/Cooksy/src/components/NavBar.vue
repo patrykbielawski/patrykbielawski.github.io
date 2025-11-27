@@ -131,7 +131,7 @@ export default defineComponent({
         };
 
         const isSearchVisible = ref(false);
-        const searchInputRef = ref(null);
+        const searchInputRef = ref<HTMLInputElement | null>(null);
 
         const toggleSearch = () => {
             isSearchVisible.value = !isSearchVisible.value;

@@ -200,6 +200,8 @@ interface FormState {
     name: string;
     category: string;
     area: string;
+    tags: string;
+    source: string;
     ingredients: RecipeIngredient[];
     instructions: string;
     imageFile: File | null;
@@ -222,6 +224,8 @@ export default defineComponent({
             name: '',
             category: '',
             area: '',
+            tags: '',
+            source: '',
             instructions: '',
             ingredients: [{ name: '', measure: ''}],
             imageFile: null,
@@ -284,7 +288,7 @@ export default defineComponent({
 
         const handleImageUpload = (event: Event) => {
             const input = event.target as HTMLInputElement;
-            submitError.value = null;
+            submitError.value = '';
 
             if (input.files && input.files[0]) {
                 const file = input.files[0];

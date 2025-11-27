@@ -135,7 +135,9 @@ export default defineComponent({
     };
 
     const handleTouchStart = (event: TouchEvent) => {
-      touchStartX.value = event.touches[0].clientX;
+      if (event.touches.length === 0) return;
+
+      touchStartX.value = event.touches[0]!.clientX;
       isSwiping.value = true;
 
       if (trackRef.value) {
@@ -146,7 +148,9 @@ export default defineComponent({
     const handleTouchMove = (event: TouchEvent) => {
       if (!isSwiping.value) return;
 
-      touchMoveX.value = event.touches[0].clientX;
+      if (event.touches.length === 0) return;
+
+      touchMoveX.value = event.touches[0]!.clientX;
       touchDist.value = touchMoveX.value - touchStartX.value;
 
       if (trackRef.value) {

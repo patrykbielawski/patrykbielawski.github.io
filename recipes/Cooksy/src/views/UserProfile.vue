@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-if="user">
     <div class="user-profile-wrapper">
       <section class="welcome-msg">
           <h2>Welcome, {{ user.displayName }}!</h2>
@@ -21,7 +21,7 @@
               Error fetching favorites: {{ error }}
             </p>
 
-            <p v-else-if="favoriteRecipes.lenght === 0" class="no-favorites">
+            <p v-else-if="favoriteRecipes.length === 0" class="no-favorites">
               You have no favorite recipes yet. <router-link to="/">Find some!</router-link>
             </p>
 
