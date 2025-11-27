@@ -20,4 +20,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COOKSY_24A88 }}
           projectId: cooksy-24a88
-          projectPath: ./recipes/Cooksy
+          entryPoint: ./recipes/Cooksy
