@@ -17,7 +17,7 @@ jobs:
           node-version: '20'
       - name: Install dependencies and build
         run: |
-          cd recipes/Cooksy
+          cd recipes/cooksy
           npm ci
           npm run build
         env:
