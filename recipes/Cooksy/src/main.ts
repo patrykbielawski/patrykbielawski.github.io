@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/styles.css'
-import { MotionPlugin } from '@vueuse/motion';
 import createCooksyRouter from './router';
 import { VueFire, VueFireAuth, VueFireFirestoreOptionsAPI } from 'vuefire';
 import { firebaseApp, getFirebaseDb, getFirebaseAuth } from './firebase';
@@ -15,7 +14,6 @@ const app = createApp(App);
 const router = createCooksyRouter();
 
 
-app.use(MotionPlugin);
 app.use(router);
 app.use(VueFire, {
     firebaseApp,
