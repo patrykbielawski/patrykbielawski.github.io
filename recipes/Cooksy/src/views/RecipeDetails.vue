@@ -74,8 +74,11 @@
 <script lang="ts">
 import { defineComponent, ref, watch, computed } from 'vue';
 import { useRoute } from 'vue-router';
-
+import { doc, getDoc } from 'firebase/firestore';
+import { getFirebaseDb } from '@/firebase';
 import { useFav } from '../composables/useFav';
+
+declare const __app_id: string;
 
 interface MealDetail {
     idMeal: string;
@@ -114,6 +117,9 @@ export default defineComponent({
         const isLoading = ref(false);
         const recipeError = ref<string | null>(null);
 
+        const db = getFirebaseDb();
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'cooksy';
+
         const fetchRecipeDetails = async (id: string) => {
             if (!id) return;
 
@@ -122,6 +128,23 @@ export default defineComponent({
             meal.value = null;
 
             try {
+                const recipeDocRef = doc(
+                    db,
+                    'artifacts',
+                    appId,
+                    'public',
+                    'data',
+                    'recipes',
+                    id
+                );
+                const docSnap = await getDoc(recipeDocRef);
+
+                if (docSnap.exists()) {
+                    meal.value = docSnap.data() as MealDetail;
+                    isLoading.value = false;
+                    return;
+                }
+
                 const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
                 const response = await fetch(url);
                 const data = await response.json();

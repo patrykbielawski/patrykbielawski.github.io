@@ -93,6 +93,7 @@ export default defineComponent({
         flex-direction: column;
         text-align: center;
         height: auto;
+        max-width: 300px;
     }
 
     .card-content {

@@ -14,25 +14,25 @@
 
             <form @submit.prevent="addRecipe" class="form">
 
-                <div class="form-group image-upload-group">
-                    <label for="imageFile">Photo of your dish:</label>
-                    <input 
-                        type="file"
-                        id="imageFile"
-                        name="imageFile"
-                        accept="image/*"
-                        @change="handleImageUpload"
-                        required
-                        class="file-input"
-                    >
-                    <div v-if="imagePreviewUrl" class="image-preview">
-                        <img :src="imagePreviewUrl" alt="Recipe Preview" class="preview-img">
+                <div class="form-group generated-image-preview">
+                    <label>Recipe Preview (Generated):</label>
+                    <div v-if="isImageLoading" class="image-placeholder">
+                        <span class="material-icons spin">sync</span>
+                        <span>Finding the perfect photo...</span>
+                    </div>
+                    <div v-else-if="reactivePreviewUrl" class="image-preview">
+                        <img 
+                            :src="reactivePreviewUrl"
+                            :key="reactivePreviewUrl"
+                            alt="Generated Image Preview"
+                            class="preview-img"
+                        >
+                        <p class="file-limit">An image generated automatically based on your recipe's name.</p>
                     </div>
                     <div v-else class="image-placeholder">
-                        <span class="material-icons">image</span>
-                        <span>Preview will appear here</span>
+                        <span class="material-icons">restaurant</span>
+                        <span>Start typing a name to see a preview...</span>
                     </div>
-                    <p class="file-limit">Maximum file size: 5MB.</p>
                 </div>
 
                 <div class="form-group">
@@ -182,12 +182,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, onMounted } from "vue";
+import { defineComponent, reactive, ref, onMounted, watch, } from "vue";
 import { fetchCategories, fetchAreas } from '../composables/mealDbApi';
 
 import { collection, doc, setDoc, serverTimestamp, addDoc } from 'firebase/firestore';
 import { getFirebaseAuth, getFirebaseDb } from '../firebase';
-import { getStorage, uploadBytes, ref as storageRef, getDownloadURL } from "firebase/storage";
 import { useRouter } from "vue-router";
 import { useCurrentUser } from "vuefire";
 
@@ -217,7 +216,6 @@ export default defineComponent({
         const user = useCurrentUser();
         const db = getFirebaseDb();
         const auth = getFirebaseAuth();
-        const storage = getStorage();
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'cooksy';
 
         const form = reactive<FormState>({
@@ -242,9 +240,6 @@ export default defineComponent({
         const areas = ref<string[]>([]);
         const areaLoading = ref(true);
         const areaError = ref<string |null>(null);
-
-        const selectedImageFile = ref<File | null>(null);
-        const imagePreviewUrl = ref<string | null>(null);
 
         const addIngredient = () => {
             form.ingredients.push({ name: '', measure: '' });
@@ -286,55 +281,63 @@ export default defineComponent({
             }
         };
 
-        const handleImageUpload = (event: Event) => {
-            const input = event.target as HTMLInputElement;
-            submitError.value = '';
+        const reactivePreviewUrl = ref<string | null>(null);
+        const isImageLoading = ref(false);
 
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                const maxSizeInMB = 5;
+        const updateRecipeImage = async (query: string) => {
+            if (!query || query.length < 3) {
+                reactivePreviewUrl.value = null;
+                return;
+            }
 
-                if (!file.type.startsWith('image/')) {
-                    submitError.value = 'Please select a valid image file (JPEG, PNG, GIF, etc.).';
-                    input.value = '';
-                    selectedImageFile.value = null;
-                    imagePreviewUrl.value = null;
-                    return;
+            isImageLoading.value = true;
+            try {
+                const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
+                const searchTerms = encodeURIComponent(`${query} ${form.category} food plated`);
+                const res = await fetch(
+                    `https://api.unsplash.com/search/photos?query=${searchTerms}&per_page=1&orientation=landscape`,
+                    {
+                        headers: {
+                            Authorization: `Client-ID ${accessKey}`
+                        }
+                    }
+                );
+
+                const data = await res.json();
+                if (data.results && data.results.length > 0) {
+                    reactivePreviewUrl.value = data.results[0].urls.regular;
                 }
-
-                if (file.size > maxSizeInMB * 1024 * 1024) {
-                    submitError.value = `The file size must be less than ${maxSizeInMB}MB.`;
-                    input.value = '';
-                    selectedImageFile.value = null;
-                    imagePreviewUrl.value = null;
-                    return;
-                }
-
-                form.imageFile = file;
-                imagePreviewUrl.value = URL.createObjectURL(file);
-            } else {
-                form.imageFile = null;
-                imagePreviewUrl.value = null;
+            } catch (error) {
+                console.error('Unsplash API error:', error);
+                reactivePreviewUrl.value = `https://loremflickr.com/800/600/${encodeURIComponent(query)},food`;
+            } finally {
+                isImageLoading.value = false;
             }
         };
 
+        watch([() => form.name, () => form.category], ([newName]) => {
+            const handler = setTimeout(() => {
+                updateRecipeImage(newName);
+            }, 800);
+
+            return () => clearTimeout(handler);
+        });
+
         const addRecipe = async () => {
 
-            if (isSubmitting.value || !user.value || !form.imageFile) return;
+            if (!user.value) {
+                submitError.value = 'You must be logged in to submit a recipe.';
+                return;
+            }
+            
+            if (isSubmitting.value) return;
 
             isSubmitting.value = true;
             submitError.value = '';
             submitSuccess.value = '';
 
             try {
-                const imageFile = form.imageFile as File;
-                const path = `user_recipes/${user.value.uid}/${Date.now()}_${imageFile.name}`;
-                const storageReference = storageRef(storage, path);
-
-                const uploadResult = await uploadBytes(storageReference, imageFile, {
-                    contentType: imageFile.type,
-                });
-                const imageUrl = await getDownloadURL(uploadResult.ref);
+                const recipeId = crypto.randomUUID();
 
                 const ingredientsMap = form.ingredients.reduce((acc, ing, index) => {
                     const measureKey = `strMeasure${index + 1}`;
@@ -345,9 +348,9 @@ export default defineComponent({
                 }, {});
 
                 const recipeData = {
-                    idMeal: crypto.randomUUID(),
+                    idMeal: recipeId,
                     strMeal: form.name,
-                    strMealThumb: imageUrl,
+                    strMealThumb: reactivePreviewUrl.value,
                     strCategory: form.category,
                     strArea: form.area,
                     strInstructions: form.instructions,
@@ -359,8 +362,16 @@ export default defineComponent({
                     ...ingredientsMap
                 };
 
-                const recipesCollection = collection(db, 'artifacts', typeof __app_id !== 'undefined' ? __app_id : 'cooksy', 'public', 'data', 'recipes');
-                await addDoc(recipesCollection, recipeData);
+                const recipeDocRef = doc(
+                    db,
+                    'artifacts',
+                    appId,
+                    'public',
+                    'data',
+                    'recipes',
+                    recipeId
+                );
+                await setDoc(recipeDocRef, recipeData);
 
                 submitSuccess.value = 'Recipe submitted successfully! Redirecting you in a moment...';
 
@@ -369,8 +380,6 @@ export default defineComponent({
                 form.area = '';
                 form.instructions = '';
                 form.ingredients = [{ name: '', measure: '' }];
-                selectedImageFile.value = null;
-                imagePreviewUrl.value = null;
 
                 setTimeout(() => {
                     router.push({ name: 'Home' });
@@ -402,8 +411,8 @@ export default defineComponent({
             addIngredient,
             removeIngredient,
             addRecipe,
-            imagePreviewUrl,
-            handleImageUpload,
+            reactivePreviewUrl,
+            isImageLoading,
         };
     },
 
@@ -420,6 +429,7 @@ export default defineComponent({
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        color: #4c6c8a;
     }
 
     .form-container {
@@ -430,6 +440,18 @@ export default defineComponent({
         border-radius: 12px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         border: 1px solid #ddd;
+        display: flex;
+        justify-content: center;
+    }
+
+    .generated-image-preview {
+        width: 300px;
+        justify-self: center;
+    }
+
+    .image-preview {
+        outline: 1px solid #4c6c8a;
+        box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.3 );
     }
 
     .form h3 {
@@ -643,6 +665,7 @@ export default defineComponent({
     .submit-btn {
         width: 100%;
         padding: 15px;
+        margin: 0 auto;
         font-size: 1.2rem;
         font-weight: bold;
         background-color: #d87c3c;
