@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bg-primary: #1A1A1B;
+  --color-brand-red: #B91C1C;
+  --color-brand-gold: #EAB308;
+  --color-text-primary: #F4F4F5;
+  --color-text-secondary: #F5F5DC;
+
+  /* Fonts */
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+}
+
+body {
+  @apply bg-bg-primary text-text-primary antialiased;
+}
