@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
         <div class="footer-content">
-            <p>© 2024 Recipe App. All rights reserved.</p>
+            <p>© 2026 Cooksy. All rights reserved.</p>
             <p>Developed by Patryk Bielawski.</p>
         </div>
     </footer>
