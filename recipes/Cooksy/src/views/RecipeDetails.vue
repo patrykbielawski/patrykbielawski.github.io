@@ -144,7 +144,11 @@ export default defineComponent({
                     isLoading.value = false;
                     return;
                 }
+            } catch (error) {
+                console.warn('Recipe not found in Firestore, checking API...', error);
+            }
 
+            try {
                 const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
                 const response = await fetch(url);
                 const data = await response.json();
@@ -180,7 +184,7 @@ export default defineComponent({
                 const ingredient = meal.value[ingredientKey]?.trim();
                 const measure = meal.value[measureKey]?.trim();
 
-                if (!ingredient) {
+                if (!ingredient || ingredient === "") {
                     break;
                 }
 
