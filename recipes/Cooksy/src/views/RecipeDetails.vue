@@ -1,72 +1,74 @@
 <template>
-  <div class="recipe-details-page" :style="pagePaddingStyle">
-    <div v-if="isLoading" class="loading-message">
+  <div class="max-w-4xl mx-auto py-8 px-6 text-slate-800 animate-fade-in-up" :style="pagePaddingStyle">
+    <div v-if="isLoading" class="flex items-center justify-center gap-3 py-16 text-slate-500 font-medium text-lg">
         <span class="material-icons spin">autorenew</span>Loading recipe details...
     </div>
 
-    <div v-else-if="recipeError" class="error-message">
-        <span class="material-icons">error-outline</span> {{ recipeError }}
-        <p>Could not load the recipe details. Please try again or go back.</p>
+    <div v-else-if="recipeError" class="flex flex-col items-center justify-center gap-3 py-16 text-red-500 bg-red-50 rounded-2xl border border-red-100 max-w-xl mx-auto px-6 text-center">
+        <span class="material-icons text-4xl">error_outline</span>
+        <h3 class="font-bold text-lg">{{ recipeError }}</h3>
+        <p class="text-sm text-slate-600">Could not load the recipe details. Please try again or go back.</p>
     </div>
 
-    <div v-else-if="meal" class="recipe-content">
-        <div class="recipe-header">
+    <div v-else-if="meal" class="bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-xs recipe-content">
+        <div class="flex flex-col md:flex-row gap-8 items-start mb-8 pb-8 border-b border-slate-100 relative recipe-header">
             <span
-                class="material-symbols-outlined fav"
+                class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full bg-white/90 backdrop-blur-xs shadow-xs text-slate-600 hover:text-red-500 select-none material-symbols-outlined fav z-10"
                 :class="{
                     favorited: isFavorite,
                     'is-loading': isFavLoading
                 }"
                 @click="toggleFav"
                 :style="{ cursor: isFavLoading ? 'wait' : 'pointer' }"
-                >
-                    favorite
-                </span>
-            <img :src="meal.strMealThumb" :alt="meal.strMeal" class="recipe-image">
-            <div class="header-info">
-                <h1>{{ meal.strMeal }}</h1>
-                <div class="recipe-meta">
-                    <span class="meta-item">
-                        <span class="material-icons">category</span> {{ meal.strCategory }}
+            >
+                favorite
+            </span>
+            <img :src="meal.strMealThumb" :alt="meal.strMeal" class="w-full md:w-2/5 aspect-video md:aspect-square object-cover rounded-2xl shadow-xs border border-slate-100 recipe-image">
+            <div class="flex-1 space-y-4 text-left header-info">
+                <h1 class="text-2xl md:text-3xl font-extrabold text-brand-blue">{{ meal.strMeal }}</h1>
+                <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-600 recipe-meta">
+                    <span class="flex items-center gap-1.5 meta-item">
+                        <span class="material-icons text-brand-orange text-lg">category</span> {{ meal.strCategory }}
                     </span>
-                    <span class="meta-item">
-                        <span class="material-icons">flag</span> {{ meal.strArea }}
+                    <span class="flex items-center gap-1.5 meta-item">
+                        <span class="material-icons text-brand-orange text-lg">flag</span> {{ meal.strArea }}
                     </span>
                 </div>
-                <p class="recipe-tags">
-                    <span v-if="meal.strTags" class="tag-list">
-                        Tags:
-                        <span v-for="tag in meal.strTags.split(',')" :key="tag" class="tag">
+                <div class="text-xs flex flex-wrap items-center gap-2 text-slate-500 recipe-tags">
+                    <span v-if="meal.strTags" class="flex flex-wrap items-center gap-1.5">
+                        <span class="font-semibold text-slate-400 mr-1">Tags:</span>
+                        <span v-for="tag in meal.strTags.split(',')" :key="tag" class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-md font-medium">
                             {{ tag.trim() }}
                         </span>
                     </span>
-                </p>
-                <a :href="meal.strYoutube" target="_blank" class="youtube-link" v-if="meal.strYoutube">
-                    <span class="material-icons">play_circle</span> Watch on YouTube
+                </div>
+                <a :href="meal.strYoutube" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl shadow-xs hover:shadow-md transition-all duration-200 active:scale-95 cursor-pointer youtube-link" v-if="meal.strYoutube">
+                    <span class="material-icons text-lg">play_circle</span> Watch on YouTube
                 </a>
             </div>
         </div>
 
-        <div class="recipe-body">
-            <div class="ingredients-list">
-                <h2>Ingredients:</h2>
-                <ul>
-                    <li v-for="({ ingredient, measure }, index) in ingredientsAndMeasures" :key="index">
-                        <span class="measure">{{ measure }}</span>
-                        <span class="ingredient">{{ ingredient }}</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6 pt-6 recipe-body">
+            <div class="md:col-span-1 space-y-4 text-left ingredients-list">
+                <h2 class="text-base font-extrabold text-brand-blue border-b border-slate-100 pb-2">Ingredients:</h2>
+                <ul class="divide-y divide-slate-100">
+                    <li v-for="({ ingredient, measure }, index) in ingredientsAndMeasures" :key="index" class="flex justify-between py-2 text-sm">
+                        <span class="font-bold text-brand-orange measure">{{ measure }}</span>
+                        <span class="text-slate-600 text-right pl-2 ingredient">{{ ingredient }}</span>
                     </li>
                 </ul>
             </div>
 
-            <div class="instructions-section">
-                <h2>Instructions:</h2>
-                <p class="instructions" v-html="formattedInstructions"></p>
+            <div class="md:col-span-2 space-y-4 text-left instructions-section">
+                <h2 class="text-base font-extrabold text-brand-blue border-b border-slate-100 pb-2">Instructions:</h2>
+                <p class="text-sm md:text-base text-slate-600 leading-relaxed whitespace-pre-line instructions" v-html="formattedInstructions"></p>
             </div>
         </div>
     </div>
 
-    <div v-else class="error-message">
-        <span class="material-icons">search_off</span>Recipe not found.
+    <div v-else class="flex flex-col items-center justify-center gap-2 py-16 text-slate-500">
+        <span class="material-icons text-4xl">search_off</span>
+        <p class="font-medium">Recipe not found.</p>
     </div>
   </div>
 </template>
@@ -231,100 +233,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-    .recipe-details-page {
-        max-width: 900px;
-        min-height: auto;
-        margin: 2rem auto;
-        padding: 0 1.5rem !important;
-        font-family: Roboto, sans-serif;
-        color: #333;
-    }
-
-    .loading-message, .error-message {
-        text-align: center;
-        padding: 50px;
-        font-size: 1.2em;
-        color: #555;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .recipe-content {
-        background: #f6f6f6;
-        border: 1px solid #4c6c8a;
-        padding: 20px;
-        border-radius: 8px;
-    }
-
-    .recipe-header {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
-
-    .recipe-image {
-        width: 100%;
-        max-height: 350px;
-        object-fit: cover;
-        border-radius: 6px;
-        outline: 1px solid #4c6c8a;
-        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-    }
-
-    .header-info h1 {
-        font-size: 2em;
-        margin-top: 0;
-        margin-bottom: 10px;
-        color: #4c6c8a;
-    }
-
-    .recipe-meta {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 15px;
-    }
-
-    .meta-item {
-        display: flex;
-        align-items: center;
-        font-size: 0.9em;
-    }
-
-    .meta-item .material-icons {
-        margin-right: 5px;
-        font-size: 1em;
-        color: #d87c3c;
-    }
-
-    .tag {
-        display: inline-block;
-        background-color: #f0f0f0;
-        padding: 2px 8px;
-        border-radius: 4px;
-        margin-left: 5px;
-        font-size: 0.8em;
-    }
-
     .fav {
-        display: flex;
-        height: 1em;
-        width: 1em;
-        justify-content: flex-start;
-        align-items: initial;
-        color: #4c6c8a;
         font-variation-settings:
         'FILL' 0,
         'wght' 400,
         'GRAD' 200,
         'opsz' 48;
-        padding: 0;
-        margin: 0;
-        transition: font-variation-settings 0.2s ease-in-out, color 0.2s;
+        transition: font-variation-settings 0.2s ease-in-out, color 0.2s, transform 0.1s;
     }
 
     .fav:hover {
@@ -333,24 +248,11 @@ export default defineComponent({
         'wght' 400,
         'GRAD' 200,
         'opsz' 48;
-        color: #d87c3c;
-        cursor: pointer;
-        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-    }
-
-    .fav:active {
-        transform: scale(0.95);
-        color: #4c6c8a;
-        transition: transform 0.1s, color 0.2s;
-        font-variation-settings: 
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 200,
-        'opsz' 48;
+        color: #ef4444;
     }
 
     .fav.favorited {
-        color: #d87c3c;
+        color: #ef4444;
         font-variation-settings: 
         'FILL' 1,
         'wght' 400,
@@ -364,106 +266,12 @@ export default defineComponent({
         pointer-events: none;
     }
 
-    .youtube-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 8px 15px;
-        background-color: #ff0000;
-        color: white;
-        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
+    .spin {
+        animation: spin 1.2s infinite linear;
     }
 
-    .youtube-link:hover {
-        transform: scale(1.05);
-        background-color: #CD201F;
-        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-        transition: transform 0.2s ease-in-out;
-    }
-
-    .youtube-link:active {
-        transform: scale(0.95);
-        transition: transform 0.2s ease-in-out;
-    }
-
-    .recipe-body {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 30px;
-        background-color: #f6f6f6;
-        padding: 10px;
-        border-top: 1px solid #d87c3c;
-    }
-
-    .recipe-body h2 {
-        color: #4c6c8a;
-        padding-bottom: 5px;
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-size: 1.5em;
-    }
-
-    /* Ingredients */
-    .ingredients-list ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .ingredients-list li {
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 0;
-        border-bottom: 1px solid #4c6c8a;
-        font-size: 1em;
-    }
-
-    .measure {
-        font-weight: bold;
-        flex-basis: 35%;
-        text-align: left;
-    }
-
-    .ingredient {
-        flex-basis: 65%;
-        text-align: center;
-        border-left: 1px solid #4c6c8a;
-    }
-
-    /* Instructions */
-    .instructions-section {
-        line-height: 1.6;
-        text-align: center;
-        border-top: 1px solid #d87c3c;
-    }
-
-    /* Responsive adjustments */
-    @media (min-width: 768px) {
-        .recipe-header {
-            flex-direction: row;
-        }
-        
-        .recipe-image {
-            width: 40%;
-            max-width: 300px;
-            flex-shrink: 0;
-        }
-
-        .recipe-body {
-            grid-template-columns: 1fr 2fr;
-        }
-
-        .instructions-section {
-            border: none;
-        }
-    }
-
-    /* keyframes */
     @keyframes spin {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-
 </style>

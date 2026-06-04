@@ -1,81 +1,118 @@
 <template>
   <nav
     ref="navElementRef"
-    :class="{ 'nav-search-expanded': isSearchVisible && !isLargeDesktopProp}"
+    class="fixed top-0 left-0 w-full z-50 flex items-center border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300 px-6 py-2"
+    :class="[
+      isSearchVisible && !isLargeDesktopProp 
+        ? 'h-20 justify-start px-4' 
+        : 'h-28 md:h-24 justify-between'
+    ]"
+  >
+    <!-- Mobile Hamburger Button -->
+    <div 
+      class="md:hidden flex items-center justify-center cursor-pointer text-brand-blue hover:text-brand-orange transition-colors duration-200 select-none"
+      :class="[isSearchVisible && !isLargeDesktopProp ? 'flex-none mr-3' : 'flex-1']"
+      @click="toggleMenu"
     >
+      <Transition name="icon-fade" mode="out-in">
+        <span v-if="isMenuOpen" class="material-icons text-3xl">close</span>
+        <span v-else class="material-icons text-3xl">menu</span>
+      </Transition>
+    </div>
 
-            <div class="menu" @click="toggleMenu">
-                <Transition name="icon-fade" mode="out-in">
-                    <span v-if="isMenuOpen" class="material-icons menu">close</span>
-                    <span v-else class="material-icons menu">menu</span>
-                </Transition>
-            </div>
-
-            <Transition name="fade-shrink">
-                <div class="logo-container" v-if="!isSearchVisible">
-                    <img class="logo" alt="Logo" src="../assets/logo.svg">
-                </div>
-            </Transition>    
-
-            <Transition name="fade-shrink">
-                <div class="routes" v-if="!isSearchVisible">
-                    <router-link to="/"><button>Home</button></router-link> |
-                    <router-link to="/list"><button>Shopping List</button></router-link> |
-                    <template v-if="currentUser">
-                        <router-link to="/profile"><button>Profile</button></router-link> |
-                        <router-link to="/" @click="handleLogout"><button class="logout-button">Log Out</button></router-link> |
-                    </template>
-                    <template v-else>
-                        <router-link to="/auth"><button>Sign In</button></router-link> |
-                    </template>
-                    <router-link to="/contact"><button>Contact</button></router-link>
-                </div>
-            </Transition>
-
-            <div class ="search" :class="{ 'expanded': isSearchVisible }">
-                <Transition name ="search-grow">
-                    <input
-                    id="search-bar"
-                    type="text"
-                    placeholder="Search recipes..." 
-                    v-if="isLargeDesktopProp || isSearchVisible" 
-                    v-model="searchQuery" 
-                    ref="searchInputRef"
-                    @keyup.enter="submitSearch"
-                    :class="{ 'is-growing': isSearchVisible }"
-                    />
-                </Transition>
-
-                <Transition name="icon-fade" mode="out-in">
-                    <span 
-                    v-if="!isSearchVisible && !isLargeDesktopProp"
-                    class="material-icons search-button" 
-                    @click="toggleSearch"
-                    >
-                    search
-                    </span>
-
-                    <span
-                    v-else-if="isSearchVisible && !isLargeDesktopProp"
-                    class="material-icons search-button"
-                    @click="toggleSearch"
-                    >
-                    close
-                    </span>
-                </Transition>
-
-                <span
-                v-if="isSearchVisible || isLargeDesktopProp"
-                class="material-icons search-button"
-                @click="submitSearch"
-                >
-                send
-                </span>
-            </div>
-    </nav>  
-    <Transition name="dropdown-fade">
-        <DropdownMenu v-if="isMenuOpen" />
+    <!-- Logo Section -->
+    <Transition name="fade-shrink">
+      <div class="flex-1 flex justify-center items-center mx-auto" v-if="!isSearchVisible">
+        <img class="h-16 md:h-20 w-auto object-contain" alt="Logo" src="../assets/logo.svg">
+      </div>
     </Transition>
+
+    <!-- Desktop Navigation Links -->
+    <Transition name="fade-shrink">
+      <div class="hidden md:flex flex-1 items-center justify-center gap-1 text-slate-400" v-if="!isSearchVisible">
+        <router-link to="/">
+          <button class="px-4 py-2 mx-1 text-sm font-semibold rounded-lg bg-brand-orange/85 text-white hover:bg-brand-blue hover:text-brand-orange hover:shadow-sm transition-all duration-200 active:scale-95 cursor-pointer w-24">Home</button>
+        </router-link>
+        <span class="text-slate-300">|</span>
+        <router-link to="/list">
+          <button class="px-4 py-2 mx-1 text-sm font-semibold rounded-lg bg-brand-orange/85 text-white hover:bg-brand-blue hover:text-brand-orange hover:shadow-sm transition-all duration-200 active:scale-95 cursor-pointer w-28">Shopping List</button>
+        </router-link>
+        <span class="text-slate-300">|</span>
+        <template v-if="currentUser">
+          <router-link to="/profile">
+            <button class="px-4 py-2 mx-1 text-sm font-semibold rounded-lg bg-brand-orange/85 text-white hover:bg-brand-blue hover:text-brand-orange hover:shadow-sm transition-all duration-200 active:scale-95 cursor-pointer w-24">Profile</button>
+          </router-link>
+          <span class="text-slate-300">|</span>
+          <router-link to="/" @click="handleLogout">
+            <button class="px-4 py-2 mx-1 text-sm font-semibold rounded-lg bg-brand-orange/85 text-white hover:bg-red-600 hover:text-white hover:shadow-sm transition-all duration-200 active:scale-95 cursor-pointer w-24">Log Out</button>
+          </router-link>
+          <span class="text-slate-300">|</span>
+        </template>
+        <template v-else>
+          <router-link to="/auth">
+            <button class="px-4 py-2 mx-1 text-sm font-semibold rounded-lg bg-brand-orange/85 text-white hover:bg-brand-blue hover:text-brand-orange hover:shadow-sm transition-all duration-200 active:scale-95 cursor-pointer w-24">Sign In</button>
+          </router-link>
+          <span class="text-slate-300">|</span>
+        </template>
+        <router-link to="/contact">
+          <button class="px-4 py-2 mx-1 text-sm font-semibold rounded-lg bg-brand-orange/85 text-white hover:bg-brand-blue hover:text-brand-orange hover:shadow-sm transition-all duration-200 active:scale-95 cursor-pointer w-24">Contact</button>
+        </router-link>
+      </div>
+    </Transition>
+
+    <!-- Search Section -->
+    <div 
+      class="flex-1 flex justify-center items-center m-0 p-0"
+      :class="[
+        isSearchVisible && !isLargeDesktopProp 
+          ? 'flex-grow justify-end pr-2 gap-2' 
+          : 'gap-1'
+      ]"
+    >
+      <Transition name="search-grow">
+        <input
+          id="search-bar"
+          type="text"
+          placeholder="Search recipes..." 
+          v-if="isLargeDesktopProp || isSearchVisible" 
+          v-model="searchQuery" 
+          ref="searchInputRef"
+          @keyup.enter="submitSearch"
+          class="text-sm border border-brand-blue rounded-lg focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition-all duration-150 mx-auto w-0 px-0 border-0 lg:w-3/5 lg:px-3 lg:py-2 lg:border"
+          :class="{ 'w-[80%] flex-grow px-3 py-2 border': isSearchVisible }"
+        />
+      </Transition>
+
+      <Transition name="icon-fade" mode="out-in">
+        <span 
+          v-if="!isSearchVisible && !isLargeDesktopProp"
+          class="material-icons text-3xl cursor-pointer text-brand-blue hover:text-brand-orange transition-colors select-none mx-auto active:scale-95" 
+          @click="toggleSearch"
+        >
+          search
+        </span>
+
+        <span
+          v-else-if="isSearchVisible && !isLargeDesktopProp"
+          class="material-icons text-3xl cursor-pointer text-brand-blue hover:text-brand-orange transition-colors select-none mx-auto active:scale-95"
+          @click="toggleSearch"
+        >
+          close
+        </span>
+      </Transition>
+
+      <span
+        v-if="isSearchVisible || isLargeDesktopProp"
+        class="material-icons text-3xl cursor-pointer text-brand-blue hover:text-brand-orange transition-colors select-none mx-auto active:scale-95"
+        @click="submitSearch"
+      >
+        send
+      </span>
+    </div>
+  </nav>  
+  <Transition name="dropdown-fade">
+    <DropdownMenu v-if="isMenuOpen" />
+  </Transition>
 </template>
 
 <script lang="ts">
@@ -200,202 +237,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-    nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-height: 170px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: max-height 0.15s ease-in-out;
-    overflow: hidden;
-    }
-
-    nav.nav-search-expanded {
-        max-height: 100px;
-        transition: max-height 0.15s ease-in-out;
-        justify-content: flex-start;
-        padding-right: 0;
-        padding-left: 10px;
-    }
-
-    nav.nav-search-expanded > .search {
-        flex-grow: 1;
-        justify-content: flex-end;
-        padding-right: 10px;
-    }
-
-    nav.nav-search-expanded > .menu {
-        margin-right: 10px;
-        flex: 0;
-    }
-
-    .menu {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        align-self: center;
-        font-size: 32px;
-        cursor: pointer;
-        padding: 0;
-        margin: 0;
-        color: #4c6c8a;
-    }
-
-    .menu:hover {
-        color: #d87c3c;
-        transition: color 0.2s;
-    }
-
-    .menu:active {
-        transform: scale(0.95);
-        transition: transform 0.1s;
-    }
-
-    .logo-container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin: 0 auto;
-    }
-
-    .logo {
-        flex: 1;
-        height: 120px;
-        width: auto;
-        display: flex;
-    }
-
-    .routes {
-        display: none;
-    }
-
-    .logout-button:hover {
-        background-color: #dc2626;
-        color: white;
-        transform: scale(1.05);
-        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
-        transition: all 0.2s;
-        outline: #4c6c8a;
-    }
-
-    .logout-button:active {
-         transform: scale(0.95);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        transition: all 0.1s;
-    }
-
-    .search {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        padding: 0;
-    }
-
-    #search-bar {
-        padding: 0;
-        border-width: 0;
-        border: 1px solid #4c6c8a;
-        border-radius: 4px;
-        font-size: 0.8em;
-        margin: 0 auto;
-        width: 0;
-        border-width: 0;
-    }
-
-    .search-button {
-        font-size: 32px;
-        cursor: pointer;
-        margin: 0 auto;
-        color: #4c6c8a;
-    }
-
-    .search-button:hover {
-        color: #d87c3c;
-        transition: color 0.2s;
-    }
-
-    .search-button:active {
-        transform: scale(0.95);
-        transition: transform 0.1s;
-    }
-
-    .expanded #search-bar.is-growing {
-        width: 80%;
-        padding: 8px;
-        border-width: 1px;
-    }
-
-    .search.expanded {
-        gap: 5px;
-    }
-
-    .expanded #search-bar {
-        flex-grow: 1;
-        width: 80%;
-        padding: 0;
-        border-width: 1px;
-    }
-
-    @media only screen and (min-width: 768px) {
-        .routes {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            color: #4c6c8a;
-        }
-
-        .search {
-            justify-content: center;
-        }
-
-        .search input {
-            width: 60%;
-            font-size: 1em;
-        }
-
-        .menu {
-            display: none;
-        }
-    }
-
-    @media only screen and (min-width: 1024px) {
-        .logo {
-            height: 200px;
-        }
-
-        .search {
-            justify-content: space-between;
-        }
-
-        .search input {
-            display: inline-block !important;
-            width: 60%;
-            font-size: 1em;
-        }
-
-        #search-bar {
-            width: 60%;
-            padding: 8px;
-            border-width: 1px;
-            max-width: none !important;
-        }
-    }
-
     .dropdown-fade-enter-active,
     .dropdown-fade-leave-active {
         transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -413,13 +254,13 @@ export default defineComponent({
         transform: translateY(0);
     }
 
-    .search .search-grow-enter-active,
-    .search .search-grow-leave-active {
+    .search-grow-enter-active,
+    .search-grow-leave-active {
         transition: all 0.15s ease-out;
     }
 
-    .search .search-grow-enter-from,
-    .search .search-grow-leave-to {
+    .search-grow-enter-from,
+    .search-grow-leave-to {
         width: 0 !important;
         padding: 0 !important;
         border-width: 0 !important;
@@ -455,5 +296,4 @@ export default defineComponent({
         opacity: 1;
         transform: scale(1);
     }
-
 </style>

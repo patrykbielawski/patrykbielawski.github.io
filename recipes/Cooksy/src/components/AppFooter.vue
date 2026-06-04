@@ -1,9 +1,7 @@
 <template>
-    <footer class="footer">
-        <div class="footer-content">
-            <p>© 2026 Cooksy. All rights reserved.</p>
-            <p>Developed by Patryk Bielawski.</p>
-        </div>
+    <footer class="py-8 mt-12 bg-slate-50 border-t border-slate-200/50 text-center text-xs text-slate-450 flex flex-col items-center justify-center gap-1.5 font-medium tracking-wide">
+        <p>© 2026 Cooksy. All rights reserved.</p>
+        <p class="text-slate-400">Developed by Patryk Bielawski.</p>
     </footer>
 </template>
 
@@ -14,16 +12,4 @@ export default {
 </script>
 
 <style scoped>
-
-    .footer {
-        background-color: #f6f6f6;
-        border-top: 2px solid #ddd;
-        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        text-align: center;
-        font-size: 14px;
-        color: #555;
-        margin-top: 10px;
-    }
-    
 </style>

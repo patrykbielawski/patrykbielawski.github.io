@@ -1,23 +1,35 @@
 <template>
-    <div class="dropdown-menu">
-        <ul>
-            <li>
-                <router-link to="/" @click="toggleMenu">Home</router-link>
+    <div class="fixed top-[112px] left-0 w-3/4 max-w-[280px] bg-white/95 backdrop-blur-md border-r border-slate-100 shadow-xl z-40 py-4 transition-all duration-300">
+        <ul class="flex flex-col gap-1 px-3">
+            <li class="rounded-lg overflow-hidden hover:bg-slate-50 transition-all duration-150">
+                <router-link to="/" @click="toggleMenu" class="block w-full px-4 py-3 text-left text-sm font-semibold text-brand-blue hover:text-brand-orange">
+                    Home
+                </router-link>
             </li>
-            <li>
-                <router-link to="/list">Shopping List</router-link>
+            <li class="rounded-lg overflow-hidden hover:bg-slate-50 transition-all duration-150">
+                <router-link to="/list" @click="toggleMenu" class="block w-full px-4 py-3 text-left text-sm font-semibold text-brand-blue hover:text-brand-orange">
+                    Shopping List
+                </router-link>
             </li>
-            <li v-if="currentUser">
-                <router-link to="/profile" @click="toggleMenu">Profile</router-link>
+            <li v-if="currentUser" class="rounded-lg overflow-hidden hover:bg-slate-50 transition-all duration-150">
+                <router-link to="/profile" @click="toggleMenu" class="block w-full px-4 py-3 text-left text-sm font-semibold text-brand-blue hover:text-brand-orange">
+                    Profile
+                </router-link>
             </li>
-            <li v-if="currentUser" class="logout-button">
-                <router-link to="/" @click="handleLogout">Log Out</router-link>
+            <li v-if="currentUser" class="rounded-lg overflow-hidden hover:bg-red-50 transition-all duration-150">
+                <router-link to="/" @click="handleLogout" class="block w-full px-4 py-3 text-left text-sm font-semibold text-red-600 hover:text-red-700">
+                    Log Out
+                </router-link>
             </li>
-            <li v-else>
-                <router-link to="/auth" @click="toggleMenu">Sign In</router-link>
+            <li v-else class="rounded-lg overflow-hidden hover:bg-slate-50 transition-all duration-150">
+                <router-link to="/auth" @click="toggleMenu" class="block w-full px-4 py-3 text-left text-sm font-semibold text-brand-blue hover:text-brand-orange">
+                    Sign In
+                </router-link>
             </li>
-            <li>
-                <router-link to="/contact">Contact</router-link>
+            <li class="rounded-lg overflow-hidden hover:bg-slate-50 transition-all duration-150">
+                <router-link to="/contact" @click="toggleMenu" class="block w-full px-4 py-3 text-left text-sm font-semibold text-brand-blue hover:text-brand-orange">
+                    Contact
+                </router-link>
             </li>
         </ul>
     </div>
@@ -55,83 +67,4 @@ export default defineComponent ({
 </script>
 
 <style scoped>
-
-    .dropdown-menu {
-        position: fixed;
-        top: 140px;
-        left: 0;
-        width: 45%;
-
-        min-height: 100px;
-        background-color: #f6f6f6;
-        border-top: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-
-        display: flex;
-        flex-direction: column;
-        padding: 20px 0;
-        opacity: 0.95;
-        padding: 20px 0;
-
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
-
-    li {
-        padding: 10px 20px;
-        text-align: left;
-        width: 100%;
-        box-sizing: border-box;
-        border-bottom: 1px solid #4c6c8a;
-        cursor: pointer;
-        color: #4c6c8a;
-    }
-
-    li:hover {
-        background-color: #4c6c8a;
-        color: #d87c3c;
-        transition: background-color 0.2s, color 0.2s;
-        outline: 1px solid #d87c3c;
-    }
-
-    li:active {
-        background-color: #384f67;
-        transition: background-color 0.15s;
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-    }
-
-    a:hover {
-        color: #d87c3c;
-        transition: color 0.2s;
-    }
-    
-    .logout-button:hover {
-        background-color: #dc2626;
-        color: white;
-        transition: background-color 0.2s, color 0.2s;
-        outline: 1px solid #4c6c8a;
-    }
-
-    .logout-button a:hover {
-        color: #f6f6f6;
-    }
-
-    .logout-button:active {
-        background-color: #b91c1c;
-        color: white;
-        transition: background-color 0.2s, color 0.2s;
-    }
-
 </style>

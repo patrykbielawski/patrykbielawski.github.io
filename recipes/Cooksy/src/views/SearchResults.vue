@@ -1,23 +1,24 @@
 <template>
-  <div class="search-results-page" :style="pagePaddingStyle">
-    <h2>
+  <div class="max-w-6xl mx-auto py-8 px-4 text-slate-850 animate-fade-in-up" :style="pagePaddingStyle">
+    <h2 class="text-xl md:text-2xl font-extrabold text-brand-blue mb-8">
         <span v-if="!isLoading && !searchError && meals">
             Showing {{ meals.length }} Result{{ meals.length === 1 ? '' : 's' }} for:
         </span>
-        <span v-else-if="currentQuery">Searching for: </span>
-        "{{ currentQuery }}"
+        <span v-else-if="currentQuery" class="text-slate-500 font-medium">Searching for: </span>
+        <span class="text-brand-orange">"{{ currentQuery }}"</span>
     </h2>
 
-    <p v-if="isLoading" class="loading-message">
-        <span class="material-icons spin">autorenew</span> Fetching delicious recipes...
+    <p v-if="isLoading" class="flex items-center justify-center gap-2 py-16 text-slate-500 font-medium text-lg">
+        <span class="material-icons spin animate-spin">autorenew</span> Fetching delicious recipes...
     </p>
 
-    <div v-else-if="searchError" class="error-message">
-        <span class="material-icons">errour-outline</span> {{ searchError }}
-        <p>Please try a different search term or check your internet connection.</p>
+    <div v-else-if="searchError" class="flex flex-col items-center justify-center gap-3 py-16 text-red-500 bg-red-50 rounded-2xl border border-red-100 max-w-xl mx-auto px-6 text-center">
+        <span class="material-icons text-3xl">error_outline</span>
+        <h3 class="font-bold text-lg">{{ searchError }}</h3>
+        <p class="text-sm text-slate-600">Please try a different search term or check your internet connection.</p>
     </div>
 
-    <div v-else-if="meals && meals.length > 0" class="meal-results-grid">
+    <div v-else-if="meals && meals.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
         <RecipeCard
             v-for="meal in meals"
             :key="meal.idMeal"
@@ -25,10 +26,10 @@
         />
     </div>
 
-    <div v-else class="no-reults-message">
-        <span class="material-icons">search_off</span>
-        <p>Sorry, we couldn't find any recipes matching "{{ currentQuery }}"</p>
-        <p>Try searching by a category (e.g., 'Italian'), or a single letter (e.g., 'C')</p>
+    <div v-else class="flex flex-col items-center justify-center gap-3 py-16 text-slate-500 max-w-md mx-auto text-center">
+        <span class="material-icons text-5xl text-slate-350">search_off</span>
+        <p class="text-base font-semibold text-slate-800">Sorry, we couldn't find any recipes matching "{{ currentQuery }}"</p>
+        <p class="text-xs text-slate-500 leading-relaxed">Try searching by a category (e.g., 'Italian'), or a single letter (e.g., 'C')</p>
     </div>
   </div>
 </template>
@@ -131,7 +132,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
     .material-symbols-outlined {
         font-variation-settings:
         'FILL' 0,
@@ -139,35 +139,4 @@ export default defineComponent({
         'GRAD' 200,
         'opsz' 48;
     }
-
-    .search-results-page {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px !important;
-        text-align: center;
-        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .meal-results-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2em;
-        justify-content: center;
-    }
-
-    .search-results-page h2 {
-        color: #4c6c8a;
-        margin-bottom: 30px;
-        font-size: 2em;
-        font-weight: 700;
-    }
-
-    .search-results-page p {
-        color: #d87c3c;
-    }
-
-    strong {
-        color: #4c6c8a;
-    }
-
 </style>

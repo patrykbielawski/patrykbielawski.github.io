@@ -1,7 +1,8 @@
 <template>
-    <div class="placeholder-wrapper">
-        <div class="placeholder">
-            <p>Sorry. This page is under construction.</p>
+    <div class="min-h-[60vh] flex items-center justify-center p-6 animate-fade-in-up">
+        <div class="text-center bg-white border border-slate-100 rounded-3xl p-8 max-w-sm shadow-xs">
+            <span class="material-icons text-5xl text-brand-orange mb-3">construction</span>
+            <p class="text-slate-600 font-medium text-sm">Sorry, this page is currently under construction.</p>
         </div>
     </div>
 </template>
@@ -14,6 +15,5 @@ export default defineComponent({
 });
 </script>
 
-<style>
-
+<style scoped>
 </style>

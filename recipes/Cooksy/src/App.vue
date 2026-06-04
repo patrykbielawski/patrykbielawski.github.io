@@ -1,15 +1,15 @@
 <template>
-  <div id="app-container">
+  <div id="app-container" class="flex flex-col min-h-screen bg-slate-50">
     <NavBar 
       ref="navBarRef"
       :is-desktop-prop="isDesktop"
       :is-large-desktop-prop="isLargeDesktop"
       @search-toggled="updateNavBarHeight"
     />
-    <div class="router-view-wrapper" :style="contentPaddingStyle">
+    <div class="flex-grow min-h-[80vh] transition-[padding] duration-150 ease-out" :style="contentPaddingStyle">
       <router-view :navbar-height="navBarHeight"/>
     </div>
-      <AppFooter />
+    <AppFooter />
   </div>
 </template>
 
@@ -86,9 +86,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-  .router-view-wrapper {
-    min-height: 80vh;
-  }
-
 </style>
