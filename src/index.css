@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme "light" {
+  --color-bg-primary: #0B0F17;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #94A3B8;
+  --color-accent: #00F2FE;
+  --color-accent-hover: #00C6FF;
+  --color-live-indicator: #10B981;
+}

@@ -1,100 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Curriculum vitae</title>
-   <link rel="icon" href="data:,">
-   <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <script src="https://kit.fontawesome.com/4dd697c854.js" crossorigin="anonymous"></script>
- </head>
- <body>
-    <div class="container">
-      <div class="header">
-        <a href="/pdf/Patryk_Bielawski_CV.pdf" class="download-button" download><i class="fa-solid fa-file-pdf"></i></a>
-        <div class="language-switcher">
-          <button class="pl" onclick="setLanguage('pl')">Polski</button>
-          <button class="en" onclick="setLanguage('en')">English</button>
-        </div>
-      </div>
-      <div class="intro">  
-        <h1 class="center"></h1>
-        <p class="center"></p>
-      </div>
-      <div class="card-container"> 
-          <div class="card about-me">
-            <a class="button" href="#about"><strong></strong></a>
-          </div>
-        <div class="card projects">
-          <a class="button" href="#projects"><strong></strong></a>
-        </div> 
-        <div class="card skills">
-          <a class="button" href="#skills"><strong></strong></a>
-        </div>
-        <div class="card contact">
-          <a class="button" href="#contact"><strong></strong></a>
-        </div>
-      </div>
-      
-      <div class="content">
-        <section id="about" class="panel">
-            <h2></h2>
-            <p></p>
-        </section>
-        <section id="projects" class="panel">
-            <h2></h2>
-            <div class="project-card">
-                <a href="https://patrykbielawski.github.io/weather/index.html" target="_blank" class="weather"></a>
-                <a href="https://patrykbielawski.github.io/weather/index.html" target="_blank"><strong></strong></a>
-            </div>
-            <div class="project-card">
-                <a href="https://cooksy-24a88.web.app/#/" target="_blank" class="cooksy"></a>
-                <a href="https://cooksy-24a88.web.app/#/" target="_blank"><strong>Cooksy</strong></a>
-            </div>
-        </section>
-        <section id="skills" class="panel">
-            <h2></h2>
-            <p></p>
-            <div class="skill-bar">
-                <label>JavaScript</label>
-                <div class="progress-bar"><div class="progress" style="--percentage:70%; --delay:0.2s"></div></div>
-            </div>
-            <div class="skill-bar">
-              <label>TypeScript</label>
-              <div class="progress-bar"><div class="progress" style="--percentage:70%; --delay:0.2s"></div></div>
-            </div>
-            <div class="skill-bar">
-                <label>React</label>
-                <div class="progress-bar"><div class="progress" style="--percentage:60%; --delay:0.2s"></div></div>
-            </div>
-            <div class="skill-bar">
-                <label>Vue</label>
-                <div class="progress-bar"><div class="progress" style="--percentage:60%; --delay:0.2s"></div></div>
-            </div>
-            <div class="skill-bar">
-                <label>Tailwind CSS</label>
-                <div class="progress-bar"><div class="progress" style="--percentage:60%; --delay:0.4s"></div></div>
-            </div>
-            <div class="skill-bar">
-                <label>Git</label>
-                <div class="progress-bar"><div class="progress" style="--percentage:50%; --delay:0.6s"></div></div>
-            </div>
-        </section>
-        <section id="contact" class="panel">
-            <h2></h2>
-            <p></p>
-            <ul class="fa-ul">
-                <li><span class="fa-li"><i class="fa-solid fa-envelope"></i></span><a class="contact-info" href="mailto:patryk@bielaw.ski"><strong>patryk@bielaw.ski</strong></a></li>
-                <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span><a class="contact-info" href="tel:+48501705119"><strong>+48 501 705 119</strong></a></li>
-            </ul> 
-        </section>
-      </div>  
-    </div>
-    <div class="footer">
-        <p class="copyright"></p>
-        <p class="copyright"></p>
-    </div>
-    <script src="language.js"></script>
- </body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>portfolio</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
